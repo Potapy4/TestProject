@@ -20,9 +20,6 @@ steps:
 
 - script: |
     cd frontend
-    sudo chown -R $(whoami) ~/.npm
-    sudo chown -R $(whoami) ~/.config
-    sudo npm install -g @angular/cli
     npm install
-    ng build --prod
+    npx ng build --prod
   displayName: 'npm install & ng build'
