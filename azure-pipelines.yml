@@ -6,31 +6,24 @@
 trigger:
 - master
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.13'
-    windows:
-      imageName: 'vs2017-win2016'
+jobs:
+- job: Windows
+  displayName: 'Build on Windows'
+  pool:
+    vmImage: VS2017-Win2016
+  steps:
+  - template: build-steps.yml
 
-pool:
-  vmImage: $(imageName)
+- job: Linux
+  displayName: 'Build on Linux'
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+  - template: build-steps.yml
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '11.x'
-  displayName: 'Install Node.js'
-    
-- script: |
-    cd backend
-    dotnet build --configuration Release
-  displayName: 'Build Backend'
-
-- script: |
-    cd frontend
-    npm install
-    npx ng build --prod
-  displayName: 'Build Frontend'
+- job: macOS
+  displayName: 'Build on MacOS'
+  pool:
+    vmImage: macOS 10.13
+  steps:
+  - template: build-steps.yml
