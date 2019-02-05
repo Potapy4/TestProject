@@ -9,9 +9,12 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-variables:
-  buildConfiguration: 'Release'
-
 steps:
-- script: cd backend && dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: cd backend && dotnet build --configuration Release
+  displayName: 'dotnet build'
+
+- script: cd frontend && npm install
+  displayName: 'npm install'
+
+- script: ng build --prod=true
+  displayName: 'ng build'
