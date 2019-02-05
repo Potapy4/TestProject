@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+- group: Variables
+
 jobs:
 - job: Windows
   displayName: 'Build on Windows'
