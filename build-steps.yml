@@ -6,11 +6,11 @@ steps:
     
 - script: |
     cd backend
-    dotnet build --configuration Release
+    dotnet build --configuration $(dotnetBuild)
   displayName: 'Build Backend'
 
 - script: |
     cd frontend
     npm install
-    npx ng build --prod
+    npx ng build --$(angularBuild)
   displayName: 'Build Frontend'
