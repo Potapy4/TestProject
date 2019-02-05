@@ -15,10 +15,14 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Order>()
             .HasOne(p => p.User)
             .WithMany(b => b.Orders)
             .HasForeignKey(p => p.UserId);
+
+            modelBuilder.Seed();
         }
     }
 }
