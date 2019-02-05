@@ -13,8 +13,9 @@ steps:
 - script: cd backend && dotnet build --configuration Release
   displayName: 'dotnet build'
 
-- script: cd frontend && npm install
-  displayName: 'npm install'
-
-- script: ng build --prod=true
-  displayName: 'ng build'
+- script: |
+    cd frontend
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install & ng build'
