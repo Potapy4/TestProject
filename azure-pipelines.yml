@@ -12,14 +12,16 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '8.x'
+    versionSpec: '11.x'
   displayName: 'Install Node.js'
     
-- script: cd backend && dotnet build --configuration Release
-  displayName: 'dotnet build'
+- script: |
+    cd backend
+    dotnet build --configuration Release
+  displayName: 'Build Backend'
 
 - script: |
     cd frontend
     npm install
     npx ng build --prod
-  displayName: 'npm install & ng build'
+  displayName: 'Build Frontend'
