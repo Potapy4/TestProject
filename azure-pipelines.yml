@@ -10,7 +10,7 @@ jobs:
   - template: ci/backend-build-steps.yml
   - template: ci/backend-publish-steps.yml
   - template: ci/frontend-build-steps.yml
-  - template: ci/github-release-steps.yml
+# - template: ci/github-release-steps.yml
 
 - job: Linux
   displayName: 'Build on Linux'
