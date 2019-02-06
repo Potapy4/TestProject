@@ -1,0 +1,12 @@
+steps:
+    
+- task: NodeTool@0
+  inputs:
+    versionSpec: '11.x'
+  displayName: 'Use Node.js'
+
+- script: |
+    cd frontend
+    npm install
+    npx ng build --$(angular.build.configuration)
+  displayName: 'Build Frontend'

@@ -1,13 +1,5 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
 - master
-
-variables:
-- group: Variables
 
 jobs:
 - job: Windows
@@ -15,18 +7,23 @@ jobs:
   pool:
     vmImage: VS2017-Win2016
   steps:
-  - template: build-steps.yml
+  - template: ci/backend-build-steps.yml
+  - template: ci/backend-publish-steps.yml
+  - template: ci/frontend-build-steps.yml
+  - template: ci/github-release-steps.yml
 
 - job: Linux
   displayName: 'Build on Linux'
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
-  - template: build-steps.yml
+  - template: ci/backend-build-steps.yml
+  - template: ci/frontend-build-steps.yml
 
 - job: macOS
   displayName: 'Build on MacOS'
   pool:
     vmImage: macOS 10.13
   steps:
-  - template: build-steps.yml
+  - template: ci/backend-build-steps.yml
+  - template: ci/frontend-build-steps.yml

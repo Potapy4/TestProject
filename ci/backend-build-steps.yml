@@ -1,0 +1,12 @@
+steps:    
+- task: DotNetCoreCLI@2
+  displayName: 'Restore nuget packages'
+  inputs:
+    command: restore
+    projects: 'backend/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build Backend'
+  inputs:
+    projects: 'backend/*.csproj'
+    arguments: '--configuration $(dotnet.build.configuration)'
