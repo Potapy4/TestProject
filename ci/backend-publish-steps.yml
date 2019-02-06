@@ -1,9 +1,3 @@
-steps:
-    
-- task: DotNetCoreCLI@2
+steps:    
+- script: dotnet publish --configuration $(dotnet.build.configuration) --output $(build.ArtifactStagingDirectory) $(dotnet.build.webapi)
   displayName: Publish
-  inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(dotnet.build.configuration) --output $(build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
