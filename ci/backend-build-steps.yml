@@ -3,10 +3,10 @@ steps:
   displayName: 'Restore nuget packages'
   inputs:
     command: restore
-    projects: 'backend/*.csproj'
+    projects: 'backend/**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build Backend'
   inputs:
-    projects: 'backend/*.csproj'
+    projects: 'backend/**/*.csproj'
     arguments: '--configuration $(dotnet.build.configuration)'
