@@ -4,7 +4,7 @@ steps:
   displayName: Publish
   inputs:
     command: publish
-    projects: 'backend/**'
+    projects: 'backend/WebAPI/WebAPI.csproj'
     publishWebProjects: True
     arguments: '--configuration $(dotnet.build.configuration) --output $(build.ArtifactStagingDirectory)'
     zipAfterPublish: True
